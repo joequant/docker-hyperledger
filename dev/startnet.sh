@@ -7,6 +7,8 @@ docker rm vp1
 docker run --name=vp0 \
        --restart=unless-stopped \
        -v $SCRIPT_DIR:/local-dev \
+       -p 5000:5000 \
+       -p 30303:30303 \
        -e CORE_PEER_ID=vp0 \
        -e CORE_VM_ENDPOINT=http://172.17.0.1:4243 \
        -e CORE_PEER_ADDRESSAUTODETECT=true \

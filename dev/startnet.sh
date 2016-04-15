@@ -1,10 +1,12 @@
+#!/bin/bash
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 docker stop vp0
 docker stop vp1
 docker rm vp0
 docker rm vp1
 docker run --name=vp0 \
        --restart=unless-stopped \
-       -i \
+       -v $SCRIPT_DIR:/local-dev \
        -e CORE_PEER_ID=vp0 \
        -e CORE_VM_ENDPOINT=http://172.17.0.1:4243 \
        -e CORE_PEER_ADDRESSAUTODETECT=true \
@@ -12,7 +14,8 @@ docker run --name=vp0 \
 
 docker run --name=vp1 \
        --restart=unless-stopped \
--i -e CORE_VM_ENDPOINT=http://172.17.0.1:4243 -e \
+       -v $SCRIPT_DIR:/local-dev \
+       -i -e CORE_VM_ENDPOINT=http://172.17.0.1:4243 -e \
 CORE_PEER_ID=vp1 -e CORE_PEER_ADDRESSAUTODETECT=true -e \
 CORE_PEER_DISCOVERY_ROOTNODE=172.17.0.2:30303 hyperledger fabric \
 peer --logging-level=debug >& vp1.log &

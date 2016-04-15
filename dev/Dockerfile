@@ -56,3 +56,5 @@ RUN export GOROOT=/go
 
 # this is only a workaround for current hard-coded problem.
 RUN ln -s $GOPATH /opt/gopath
+
+WORKDIR "$GOPATH/src/github.com/hyperledger/fabric"

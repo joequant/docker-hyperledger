@@ -2,6 +2,17 @@ Docker-Hyperledger
 ===
 Base Docker images for [Hyperledger](https://www.hyperledger.org).
 
+Quick Start
+===
+Set up scripts for docker version of hyperledger
+
+fabric-setup.sh
+./startnet.sh
+./fabric-run.sh fabric-scripts/deploy.sh
+./fabric-run.sh fabric-scripts/run-test.sh
+
+
+
 # Supported tags and respective Dockerfile links
 
 * [`0.1, latest` (latest/Dockerfile)](https://github.com/yeasy/docker-hyperledger/blob/master/Dockerfile)
@@ -10,28 +21,10 @@ Base Docker images for [Hyperledger](https://www.hyperledger.org).
 For more information about this image and its history, please see the relevant manifest file in the [`yeasy/docker-hyperledger` GitHub repo](https://github.com/yeasy/docker-hyperledger).
 
 # What is docker-hyperledger?
-Base Docker image with hyperledger deployed. Your can see [hyperledger-peer](https://hub.docker.com/r/yeasy/hyperledger-peer/) if you want to deploy a hyperledger cluster.
+Base Docker image with hyperledger deployed. 
 
 # How to use this image?
 The docker image is auto built at [https://registry.hub.docker.com/u/yeasy/hyperledger/](https://registry.hub.docker.com/u/yeasy/hyperledger/).
-
-## In Dockerfile
-```sh
-FROM yeasy/hyperledger:latest
-```
-
-## Local Run
-The image is only for the base environment. So please refer to [hyperledger-peer](https://hub.docker.com/r/yeasy/hyperledger-peer/) if you want a local run.
-
-# Which image is based on?
-The image is built based on [golang:1.6](https://hub.docker.com/_/golang) image.
-
-# What has been changed?
-## install dependencies
-Install required  libsnappy-dev, zlib1g-dev, libbz2-dev.
-
-## install rocksdb
-Install required  rocksdb 4.1.
 
 ## install hyperledger
 Install hyperledger and build the fabric as peer 

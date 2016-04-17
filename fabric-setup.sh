@@ -1,4 +1,5 @@
 #!/bin/bash
 sudo ./install-docker.sh
-docker build -t hyperledger .
-docker tag hyperledger openblockchain/baseimage
+docker build -t joequant/hyperledger .
+docker tag joequant/hyperledger hyperledger
+docker tag joequant/hyperledger openblockchain/baseimage

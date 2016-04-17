@@ -4,6 +4,12 @@ Base Docker images for [Hyperledger](https://www.hyperledger.org).
 
 Quick Start
 ===
+Make sure that docker runs with options
+
+--api-cors-header="*" -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock
+  
+install-docker.sh does this on Redhat/Mageia systems
+
 Set up scripts for docker version of hyperledger
 
 fabric-setup.sh

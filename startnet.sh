@@ -4,6 +4,9 @@ docker stop vp0
 docker stop vp1
 docker rm vp0
 docker rm vp1
+
+docker run joequant/hyperledger echo
+
 docker run --name=vp0 \
        --restart=unless-stopped \
        -v $SCRIPT_DIR:/local-dev \

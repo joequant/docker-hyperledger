@@ -8,7 +8,10 @@ MAINTAINER Baohua Yang
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
-        && apt-get install -y libsnappy-dev zlib1g-dev libbz2-dev software-properties-common curl wget unzip autoconf build-essential libtool nodejs \
+        && apt-get install -y libsnappy-dev zlib1g-dev libbz2-dev \
+        software-properties-common curl wget unzip autoconf \
+        build-essential libtool nodejs automake \
+	--no-install-recommends --no-install-suggests \
         && rm -rf /var/cache/apt
 
 # install nodejs
@@ -27,7 +30,8 @@ RUN cd /tmp \
         && make \
         && make check \
         && make install \
-        && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+        && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH \
+	&& make clean
 
 # install rocksdb
 RUN cd /tmp \
@@ -35,7 +39,8 @@ RUN cd /tmp \
  && cd rocksdb \
  && PORTABLE=1 make shared_lib \
  && INSTALL_PATH=/usr/local make install-shared \
- && ldconfig
+ && ldconfig \
+ && make clean
 
 RUN mkdir -p /var/hyperledger/db \
         && mkdir -p /var/hyperledger/production

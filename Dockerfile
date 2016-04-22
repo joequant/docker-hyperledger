@@ -12,39 +12,30 @@ ENV PATH /opt/gopath/bin:/opt/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/u
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
-&&  apt-get install -y curl tar
+    &&  apt-get install -y curl tar \
+    && rm -rf /var/cache/apt /usr/share/doc /usr/share/man \
+    && cd /opt \
+    && curl -s https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz | tar -xvzf - \
+    && rm -rf go/doc go/blog go/test go/blog go/api \
+    && ln -s /opt/go $GOPATH \
+    && curl https://raw.githubusercontent.com/joequant/hyperledger/master/config/gopath.sh > /etc/profile.d/gopath.sh \
+    && chmod 0755 /etc/profile.d/gopath.sh \
+    && mkdir -p /var/hyperledger/db \
+    && mkdir -p /var/hyperledger/production
 
-RUN cd /tmp \
-    && curl -O https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz \
-    && tar -xvf go1.6.linux-amd64.tar.gz \
-    && mv go $GOPATH \
-    && ln -s $GOPATH /opt/go
-
-RUN cd /tmp \
-    && curl -O https://raw.githubusercontent.com/joequant/hyperledger/master/config/gopath.sh \
-    && mv /tmp/gopath.sh /etc/profile.d/gopath.sh \
-    && chmod 0755 /etc/profile.d/gopath.sh
-
-RUN apt-get install -y protobuf-compiler
-
-RUN apt-get install -y libsnappy-dev zlib1g-dev libbz2-dev \
-        software-properties-common curl wget unzip \
-        build-essential libtool nodejs git \
+RUN apt-get install -y protobuf-compiler libsnappy-dev zlib1g-dev libbz2-dev \
+        unzip \
+        build-essential libtool git-core \
 	--no-install-recommends --no-install-suggests \
-        && rm -rf /var/cache/apt
-
-# install rocksdb
-RUN cd /tmp \
- && git clone --single-branch -b v4.1 --depth 1 https://github.com/facebook/rocksdb.git \
- && cd rocksdb \
- && PORTABLE=1 make shared_lib \
- && INSTALL_PATH=/usr/local make install-shared \
- && ldconfig \
- && cd .. \
- && rm -rf rocksdb
-
-RUN mkdir -p /var/hyperledger/db \
-        && mkdir -p /var/hyperledger/production
+        && rm -rf /var/cache/apt /usr/share/doc /usr/share/man \
+	&& cd /tmp \
+        && git clone --single-branch -b v4.1 --depth 1 https://github.com/facebook/rocksdb.git \
+        && cd rocksdb \
+        && PORTABLE=1 make shared_lib \
+        && INSTALL_PATH=/usr/local make install-shared \
+        && ldconfig \
+        && cd .. \
+        && rm -rf rocksdb 
 
 # install hyperledger
 RUN mkdir -p $GOPATH/src/github.com/hyperledger \
@@ -57,11 +48,7 @@ RUN mkdir -p $GOPATH/src/github.com/hyperledger \
         && cd $GOPATH/src/github.com/hyperledger/fabric/membersrvc \
         && CGO_CFLAGS=" " CGO_LDFLAGS="-lrocksdb -lstdc++ -lm -lz -lbz2 -lsnappy" go install \
 	&& cp membersrvc.yaml $GOPATH/bin/ \
-        && go clean
-
-
-RUN cp $GOPATH/src/github.com/hyperledger/fabric/consensus/noops/config.yaml $GOPATH/bin
-
-# this is only a workaround for current hard-coded problem.
+        && go clean \
+	&& cp $GOPATH/src/github.com/hyperledger/fabric/consensus/noops/config.yaml $GOPATH/bin
 
 WORKDIR "$GOPATH/bin

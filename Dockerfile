@@ -28,10 +28,10 @@ RUN cd /tmp \
         && ./autogen.sh \
         && ./configure --prefix=/usr \
         && make \
-        && make check \
         && make install \
         && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH \
-	&& make clean
+	&& cd .. \
+	&& rm -rf protobuf
 
 # install rocksdb
 RUN cd /tmp \
@@ -40,7 +40,8 @@ RUN cd /tmp \
  && PORTABLE=1 make shared_lib \
  && INSTALL_PATH=/usr/local make install-shared \
  && ldconfig \
- && make clean
+ && cd .. \
+ && rm -rf rocksdb
 
 RUN mkdir -p /var/hyperledger/db \
         && mkdir -p /var/hyperledger/production
@@ -49,17 +50,22 @@ RUN mkdir -p /var/hyperledger/db \
 RUN mkdir -p $GOPATH/src/github.com/hyperledger \
         && cd $GOPATH/src/github.com/hyperledger \
         && git clone --single-branch -b master --depth 1 https://github.com/hyperledger/fabric.git \
-        && cd $GOPATH/src/github.com/hyperledger/fabric \
+        && cd $GOPATH/src/github.com/hyperledger/fabric/peer \
         && CGO_CFLAGS=" " CGO_LDFLAGS="-lrocksdb -lstdc++ -lm -lz -lbz2 -lsnappy" go install \
+	&& cp core.yaml $GOPATH/bin/ \
+        && go clean \
+        && cd $GOPATH/src/github.com/hyperledger/fabric/membersrvc \
+        && CGO_CFLAGS=" " CGO_LDFLAGS="-lrocksdb -lstdc++ -lm -lz -lbz2 -lsnappy" go install \
+	&& cp membersrvc.yaml $GOPATH/bin/ \
         && go clean
 
 
-RUN cp $GOPATH/src/github.com/hyperledger/fabric/core.yaml $GOPATH/bin \
-        && cp $GOPATH/src/github.com/hyperledger/fabric/consensus/obcpbft/config.yaml $GOPATH/bin
+RUN cp $GOPATH/src/github.com/hyperledger/fabric/consensus/noops/config.yaml $GOPATH/bin
 
 RUN export GOROOT=/go
 
 # this is only a workaround for current hard-coded problem.
 RUN ln -s $GOPATH /opt/gopath
 
-WORKDIR "$GOPATH/src/github.com/hyperledger/fabric"
+WORKDIR "$GOPATH/bin
+

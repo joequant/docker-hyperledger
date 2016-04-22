@@ -27,6 +27,7 @@ RUN apt-get install -y protobuf-compiler libsnappy-dev zlib1g-dev libbz2-dev \
         unzip \
         build-essential libtool git-core \
 	--no-install-recommends --no-install-suggests \
+	&& strip /usr/bin/* /usr/sbin/* /opt/go/bin/* || true \
         && rm -rf /var/cache/apt /usr/share/doc /usr/share/man \
 	&& cd /tmp \
         && git clone --single-branch -b v4.1 --depth 1 https://github.com/facebook/rocksdb.git \

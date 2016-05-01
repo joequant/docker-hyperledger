@@ -9,6 +9,8 @@ MAINTAINER Joseph Wang <joequant@gmail.com>
 ENV GOPATH /opt/gopath
 ENV GOROOT /opt/go
 ENV PATH /opt/gopath/bin:/opt/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV FABRIC_REPO hyperledger
+ENV FABRIC_BRANCH master
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
@@ -47,7 +49,7 @@ RUN apt-get install -y protobuf-compiler libsnappy-dev zlib1g-dev libbz2-dev \
 # install hyperledger
 RUN mkdir -p $GOPATH/src/github.com/hyperledger \
         && cd $GOPATH/src/github.com/hyperledger \
-        && git clone --single-branch -b master --depth 1 https://github.com/hyperledger/fabric.git \
+        && git clone --single-branch -b $FABRIC_BRANCH --depth 1 https://github.com/$FABRIC_REPO/fabric.git \
         && cd $GOPATH/src/github.com/hyperledger/fabric/peer \
         && CGO_CFLAGS=" " CGO_LDFLAGS="-lrocksdb -lstdc++ -lm -lz -lbz2 -lsnappy" go install \
 	&& cp core.yaml $GOPATH/bin/ \
@@ -56,7 +58,7 @@ RUN mkdir -p $GOPATH/src/github.com/hyperledger \
         && CGO_CFLAGS=" " CGO_LDFLAGS="-lrocksdb -lstdc++ -lm -lz -lbz2 -lsnappy" go install \
 	&& cp membersrvc.yaml $GOPATH/bin/ \
         && go clean \
-	&& strip /opt/go/bin/* || true \
+	&& strip $GOPATH/bin/* || true \
 	&& cp $GOPATH/src/github.com/hyperledger/fabric/consensus/noops/config.yaml $GOPATH/bin
 
 WORKDIR "$GOPATH/bin

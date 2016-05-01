@@ -15,18 +15,17 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
     && apt-get purge -y eject whiptail \
-    &&  apt-get install -y curl tar binutils golang-1.6-go apt-utils \
+    &&  apt-get install -y curl binutils golang-1.6-go apt-utils \
     && rm -rf /var/cache/apt /usr/share/doc /usr/share/man \
     && ln -s $GOROOT /opt/go \
     && ln -s $GOROOT /opt/gopath \
     && mkdir -p /var/hyperledger/db \
     && mkdir -p /var/hyperledger/production \
     && strip --strip-unneeded /usr/bin/* /usr/sbin/* || true \
-    && strip --strip-unneeded  $GOROOT/bin/* $GOROOT/pkg/tool/*/* || true
-
-RUN apt-get install -y protobuf-compiler libsnappy-dev zlib1g-dev libbz2-dev \
+    && strip --strip-unneeded  $GOROOT/bin/* $GOROOT/pkg/tool/*/* || true \
+    &&  apt-get install -y protobuf-compiler libsnappy-dev zlib1g-dev libbz2-dev \
         unzip \
-        build-essential git-core \
+        build-essential git-core libstdc++-5-dev \
 	--no-install-recommends --no-install-suggests \
 	&& strip --strip-unneeded /usr/bin/* /usr/sbin/* || true \
 	&& strip --strip-unneeded /usr/lib/* /usr/local/lib/* || true \	
@@ -39,7 +38,10 @@ RUN apt-get install -y protobuf-compiler libsnappy-dev zlib1g-dev libbz2-dev \
         && ldconfig \
         && cd .. \
         && rm -rf rocksdb  \
-	&& apt-get purge -y make patch xz-utils g++ libdpkg-perl libtimedate-perl \
+	&& apt-get purge -y make patch xz-utils g++ libdpkg-perl \
+	    libtimedate-perl sgml-base xml-core xdg-user-dirs manpages \
+	    krb5-locales libglib2.0-0 libxtables11 shared-mime-info \
+	&& apt-get autoremove -y \
 	&& strip --strip-unneeded /usr/local/lib/* || true 
 
 # install hyperledger

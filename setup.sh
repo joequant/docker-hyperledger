@@ -4,6 +4,7 @@ export FABRIC_REPO=joequant
 export FABRIC_BRANCH=devel
 export PATH=/opt/gopath/bin:/opt/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+#install go and protobuf
 apt-get purge -y eject whiptail
 apt-get install -y curl binutils golang-1.6-go apt-utils
 rm -rf /var/cache/apt /usr/share/doc /usr/share/man
@@ -19,6 +20,8 @@ apt-get install -y protobuf-compiler libsnappy-dev zlib1g-dev libbz2-dev \
 strip --strip-unneeded /usr/bin/* /usr/sbin/* || true 
 strip --strip-unneeded /usr/lib/* /usr/local/lib/* || true
 rm -rf /var/cache/apt /usr/share/doc /usr/share/man
+
+#install rocksdb
 cd /tmp
 git clone --single-branch -b v4.1 --depth 1 https://github.com/facebook/rocksdb.git
 cd rocksdb

@@ -4,6 +4,7 @@ export FABRIC_REPO=joequant
 export FABRIC_BRANCH=devel
 export PATH=/opt/gopath/bin:/opt/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+apt-get purge -y eject whiptail
 apt-get install -y curl binutils golang-1.6-go apt-utils
 rm -rf /var/cache/apt /usr/share/doc /usr/share/man
 ln -s $GOROOT /opt/go

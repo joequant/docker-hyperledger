@@ -5,9 +5,12 @@ export FABRIC_BRANCH=devel
 export PATH=/opt/gopath/bin:/opt/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 #install go and protobuf
+rm -f /var/lib/apt/lists/*Sources* /var/lib/apt/lists/*universe*
+sed -i /universe/d /etc/apt/sources.list
 apt-get purge -y eject whiptail
 apt-get install -y curl binutils golang-1.6-go apt-utils
 rm -rf /var/cache/apt /usr/share/doc /usr/share/man
+rm -rf /usr/share/go-1.6/test
 ln -s $GOROOT /opt/go
 ln -s $GOROOT /opt/gopath
 mkdir -p /var/hyperledger/db
@@ -32,7 +35,9 @@ cd ..
 rm -rf rocksdb
 apt-get purge -y make patch xz-utils g++ libdpkg-perl \
 	    libtimedate-perl sgml-base xml-core xdg-user-dirs manpages \
-	    krb5-locales libglib2.0-0 libxtables11 shared-mime-info
+	    krb5-locales libglib2.0-0 libxtables11 shared-mime-info \
+	    ifupdown rename
+apt-get purge -y --allow-remove-essential sed e2fsprogs
 apt-get autoremove -y
 strip --strip-unneeded /usr/local/lib/* || true 
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pushd ../../fabric
+pushd fabric
 git checkout master
 git push
 git checkout devel

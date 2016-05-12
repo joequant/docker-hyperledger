@@ -1,0 +1,21 @@
+[submodule "git/fabric"]
+	path = git/fabric
+	url = https://github.com/joequant/fabric.git
+[submodule "git/hyperledger-fabric-js"]
+	path = git/hyperledger-fabric-js
+	url = https://github.com/joequant/hyperledger-fabric-js.git
+[submodule "git/marbles"]
+	path = git/marbles
+	url = https://github.com/joequant/marbles.git
+[submodule "git/chaincode-investigator"]
+	path = git/chaincode-investigator
+	url = https://github.com/joequant/chaincode-investigator.git
+[submodule "git/marbles-chaincode"]
+	path = git/marbles-chaincode
+	url = https://github.com/joequant/marbles-chaincode.git
+[submodule "git/cp-web"]
+	path = git/cp-web
+	url = https://github.com/joequant/cp-web.git
+[submodule "git/cp-chaincode-v2"]
+	path = git/cp-chaincode-v2
+	url = https://github.com/joequant/cp-chaincode-v2.git

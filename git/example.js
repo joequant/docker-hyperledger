@@ -1,5 +1,10 @@
+#!/usr/bin/node
+global.rootRequire = function(name) {
+    return require(__dirname + '/' + name);
+}
+
 var logger = {log: console.log, error: console.error, debug: console.log, warn: console.log};
-var Ibc1 = require('hyperledger-fabric-js');
+var Ibc1 = rootRequire('hyperledger-fabric-js');
 	var ibc = new Ibc1(/*logger*/);             //you can pass a logger such as winston here - optional
 	var chaincode = {};
 

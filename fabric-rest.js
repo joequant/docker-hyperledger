@@ -14,11 +14,14 @@ var filename = argv["_"][0]
 
 var args = {
 };
-function run_data(method, args) {
+function run_data(method, data) {
     client.registerMethod("method", local + method.method, method.action);
-    client.methods.method(args, function(data, response) {
-	console.log(data);
-    });
+    client.methods.method({data: data,
+			   headers:
+			   {"Content-Type": "application/json"}},
+			  function(data, response) {
+			      console.log(data);
+			  });
 }    
 
 jsonfile.readFile(argv["_"][0], function(err, method) {
@@ -26,12 +29,11 @@ jsonfile.readFile(argv["_"][0], function(err, method) {
 	console.log(err);
     } else {
 	if (argv["_"][1] != undefined) {
-	    jsonfile.readFile(argv['_'][1], function(err, args) {
+	    jsonfile.readFile(argv['_'][1], function(err, data) {
 		if (err != null) {
 		    console.log(err);
 		} else {
-		    console.log(args);
-		    run_data(method, args);
+		    run_data(method, data);
 		}
 	    });
 	} else {

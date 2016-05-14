@@ -16,5 +16,5 @@ RUN rm -f /var/lib/apt/lists/*Sources* /var/lib/apt/lists/*universe* \
     && sed -i /universe/d /etc/apt/sources.list \
     && apt-get update \
     && apt-get install -y curl \
-    &&  curl https://raw.githubusercontent.com/joequant/hyperledger/master/setup.sh | bash
+    &&  curl https://raw.githubusercontent.com/joequant/hyperledger/master/docker-setup.sh | bash
 WORKDIR "$GOPATH/bin

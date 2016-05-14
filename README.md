@@ -31,26 +31,8 @@ The docker image is auto built at [https://registry.hub.docker.com/u/yeasy/hyper
 ## install hyperledger
 Install hyperledger and build the fabric as peer 
 
-# Supported Docker versions
+Notes
+=====
 
-This image is officially supported on Docker version 1.7.0.
+fabric-rest.js json/chain.method
 
-Support for older versions (down to 1.0) is provided on a best-effort basis.
-
-# Known Issues
-* N/A.
-
-# User Feedback
-## Documentation
-Be sure to familiarize yourself with the [repository's `README.md`](https://github.com/joequant/hyperledger/blob/master/README.md) file before attempting a pull request.
-
-## Issues
-If you have any problems with or questions about this image, please contact us through a [GitHub issue](https://github.com/joequant/hyperledger/issues).
-
-You can also reach many of the official image maintainers via the email.
-
-## Contributing
-
-You are invited to contribute new features, fixes, or updates, large or small; we are always thrilled to receive pull requests, and do our best to process them as fast as we can.
-
-Before you start to code, we recommend discussing your plans through a [GitHub issue](https://github.com/joequant/hyperledger/issues), especially for more ambitious contributions. This gives other contributors a chance to point you in the right direction, give you feedback on your design, and help you find out if someone else is working on the same thing.

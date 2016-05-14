@@ -4,7 +4,8 @@
   "dependencies" :
   { "fs" : "latest",
     "async" : "latest",
-    "node-rest-client" : "latest"},
+    "node-rest-client" : "latest",
+    "jsonfile" : "latest"},
   "repository":
   {"type" : "git",
    "url" : "https://github.com/joequant/hyperledger.git"

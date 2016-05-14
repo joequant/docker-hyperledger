@@ -1,0 +1,4 @@
+{
+    "action" : "GET",
+    "method" : "/chain"
+}

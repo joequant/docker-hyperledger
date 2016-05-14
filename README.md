@@ -18,8 +18,11 @@ dockerhub image
 Otherwise
 
 ./startnet.sh
-./fabric-run.sh fabric-scripts/deploy.sh
-./fabric-run.sh fabric-scripts/run-test.sh
+./fabric-run.sh scripts/deploy.sh
+./fabric-run.sh scripts/run-test.sh
+./fabric-rest.js json/method.chaincode.json json/example02-deploy.json
+./fabric-rest.js json/method.chaincode.json json/example02-invoke.json
+./fabric-rest.js json/method.chaincode.json json/example02-query.json
 
 # Supported tags and respective Dockerfile links
 

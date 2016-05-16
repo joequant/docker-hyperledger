@@ -21,7 +21,8 @@ var Ibc1 = rootRequire('hyperledger-fabric-js');
 			}],
 		    options: {							//this is optional
 			tls: false,
-			timeout: 6000000
+			timeout: 6000000,
+			quiet: false
 			}
 		},
 		chaincode:{

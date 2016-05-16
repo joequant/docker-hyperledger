@@ -26,9 +26,9 @@ var Ibc1 = rootRequire('hyperledger-fabric-js');
 			}
 		},
 		chaincode:{
-			zip_url: 'https://github.com/ibm-blockchain/marbles-chaincode/archive/master.zip',
+			zip_url: 'https://github.com/joequant/marbles-chaincode/archive/master.zip',
 			unzip_dir: 'marbles-chaincode-master/part2',
-			git_url: 'https://github.com/ibm-blockchain/marbles-chaincode/part2'
+			git_url: 'https://github.com/joequant/marbles-chaincode/part2'
 		}
 	};
 	

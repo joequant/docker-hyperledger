@@ -2,8 +2,6 @@
 
 for i in fabric hyperledger-fabric-js marbles chaincode-investigator marbles-chaincode cp-web cp-chaincode-v2 ; do
     pushd $i
-    git checkout upstream
-    git push --set-upstream origin upstream
     git checkout master
     git push
     popd

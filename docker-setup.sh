@@ -46,12 +46,12 @@ cd $GOPATH/src/github.com/hyperledger
 git clone --single-branch --depth 1 https://github.com/$FABRIC_REPO/fabric.git
 cd $GOPATH/src/github.com/hyperledger/fabric/peer
 CGO_CFLAGS=" " CGO_LDFLAGS="-lrocksdb -lstdc++ -lm -lz -lbz2 -lsnappy" go install
-cp core.yaml $GOPATH/bin/
+curl https://raw.githubusercontent.com/joequant/hyperledger/master/config/core.yaml > $GOPATH/bin/core.yaml
 go clean
 
 cd $GOPATH/src/github.com/hyperledger/fabric/membersrvc
 CGO_CFLAGS=" " CGO_LDFLAGS="-lrocksdb -lstdc++ -lm -lz -lbz2 -lsnappy" go install
-cp membersrvc.yaml $GOPATH/bin/
+curl https://raw.githubusercontent.com/joequant/hyperledger/master/config/membersrvc.yaml > $GOPATH/bin/membersrvc.yaml
 go clean
 
 strip $GOPATH/bin/* || true

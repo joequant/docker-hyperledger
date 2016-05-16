@@ -15,7 +15,7 @@ docker run --name=vp0 \
        -e CORE_PEER_ID=vp0 \
        -e CORE_VM_ENDPOINT=http://172.17.0.1:4243 \
        -e CORE_PEER_ADDRESSAUTODETECT=true \
-       joequant/hyperledger peer node start >& vp0.log &
+       joequant/hyperledger peer node start --logging-level=debug >& vp0.log &
 
 docker run --name=vp1 \
        --restart=unless-stopped \

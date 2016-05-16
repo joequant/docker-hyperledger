@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 export FABRIC_REPO=joequant
-export FABRIC_BRANCH=devel
 export PATH=/opt/gopath/bin:/opt/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 #install go and protobuf
@@ -44,7 +43,7 @@ strip --strip-unneeded /usr/local/lib/* || true
 # install hyperledger
 mkdir -p $GOPATH/src/github.com/hyperledger
 cd $GOPATH/src/github.com/hyperledger
-git clone --single-branch -b $FABRIC_BRANCH --depth 1 https://github.com/$FABRIC_REPO/fabric.git
+git clone --single-branch --depth 1 https://github.com/$FABRIC_REPO/fabric.git
 cd $GOPATH/src/github.com/hyperledger/fabric/peer
 CGO_CFLAGS=" " CGO_LDFLAGS="-lrocksdb -lstdc++ -lm -lz -lbz2 -lsnappy" go install
 cp core.yaml $GOPATH/bin/

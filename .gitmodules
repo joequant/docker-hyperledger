@@ -16,3 +16,6 @@
 [submodule "git/fabric"]
 	path = git/fabric
 	url = https://github.com/joequant/fabric.git
+[submodule "git/hyperledger-fabric-js"]
+	path = git/hyperledger-fabric-js
+	url = https://github.com/joequant/hyperledger-fabric-js.git

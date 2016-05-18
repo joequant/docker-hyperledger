@@ -27,8 +27,8 @@ var Ibc1 = rootRequire('hyperledger-fabric-js');
 		},
 		chaincode:{
 			zip_url: 'https://github.com/joequant/marbles-chaincode/archive/master.zip',
-			unzip_dir: 'marbles-chaincode-master/part2',
-			git_url: 'https://github.com/joequant/marbles-chaincode/part2'
+			unzip_dir: 'marbles-chaincode-master/hyperledger/part2',
+			git_url: 'https://github.com/joequant/marbles-chaincode/hyperledger/part2'
 		}
 	};
 	

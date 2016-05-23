@@ -29,6 +29,7 @@ peer node start --logging-level=debug >& vp1.log &
 
 docker run --name=ca \
        --restart=unless-stopped \
+       -p 50051:50051 \
        -v $SCRIPT_DIR:/local-dev \
        -i -e CORE_VM_ENDPOINT=http://172.17.0.1:4243 -e \
 CORE_PEER_ID=ca -e CORE_PEER_ADDRESSAUTODETECT=true -e \

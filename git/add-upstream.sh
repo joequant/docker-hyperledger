@@ -10,7 +10,7 @@ pushd hyperledger-fabric-js
 git remote add upstream https://github.com/IBM-Blockchain/ibm-blockchain-js.git
 popd
 
-for i in marbles chaincode-investigator cp-web cp-chaincode-v2 ; do
+for i in marbles chaincode-investigator cp-web ; do
 git submodule add https://github.com/joequant/$i.git
 pushd $i
 git remote add upstream https://github.com/IBM-Blockchain/$i.git

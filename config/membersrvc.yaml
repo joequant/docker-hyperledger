@@ -97,6 +97,8 @@ eca:
                 assigner: 1 Tc43PeqBl11 bank_a 00008
 
                 vp: 4 f3489fy98ghf
+		vp0: 4 vp0_secret
+		vp1: 4 vp1_secret
 
                 test_vp0: 4 MwYpmSRjupbT
                 test_vp1: 4 5wgHK9qqYaPy

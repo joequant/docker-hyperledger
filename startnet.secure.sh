@@ -17,6 +17,7 @@ docker run --name=ca \
        joequant/hyperledger \
        ./membersrvc --logging-level=debug >& ca.log &
 
+sleep 5
 
 docker run --name=vp0 \
        --hostname=vp0 \

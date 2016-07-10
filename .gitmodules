@@ -19,3 +19,6 @@
 [submodule "git/hyperledger-fabric-js"]
 	path = git/hyperledger-fabric-js
 	url = https://github.com/joequant/hyperledger-fabric-js.git
+[submodule "git/car-lease-demo"]
+	path = git/car-lease-demo
+	url = https://github.com/joequant/car-lease-demo.git

@@ -36,6 +36,7 @@ docker run --name=vp0 \
        -e CORE_PEER_PKI_TLSCA_PADDR=ca:50051 \
        -e CORE_SECURITY_ENROLLID=vp0 \
        -e CORE_SECURITY_ENROLLSECRET=vp0_secret \
+       -e FABRIC_ARGS="-u jim" \
        joequant/hyperledger peer node start --logging-level=debug >& vp0.log &
 
 sleep 5
@@ -57,6 +58,7 @@ docker run --name=vp1 \
        -e CORE_PEER_PKI_TLSCA_PADDR=ca:50051 \
        -e CORE_SECURITY_ENROLLID=vp1 \
        -e CORE_SECURITY_ENROLLSECRET=vp1_secret \
+       -e FABRIC_ARGS="-u jim" \
        joequant/hyperledger \
        peer node start --logging-level=debug >& vp1.log &
 

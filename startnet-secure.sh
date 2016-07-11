@@ -62,5 +62,8 @@ docker run --name=vp1 \
        joequant/hyperledger \
        peer node start --logging-level=debug >& vp1.log &
 
+echo "Get the password from config/membersrvc.yaml"
+docker exec -it vp0 /local-dev/scripts/login.sh
+
 
 

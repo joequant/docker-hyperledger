@@ -6,7 +6,7 @@ Quick Start
 ===
 Make sure that docker runs with options
 
---api-cors-header="*" -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock
+--api-cors-header="*" -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
   
 install-docker.sh does this on Redhat/Mageia systems
 
@@ -17,7 +17,10 @@ dockerhub image
 
 Otherwise
 
-./startnet.sh
+./startnet.sh or ./startnet-secure.sh
+
+Run test items
+
 ./fabric-run.sh scripts/deploy.sh
 ./fabric-run.sh scripts/run-test.sh
 ./fabric-rest.js json/method.chaincode.json json/example02-deploy.json

@@ -25,7 +25,7 @@ rm -rf /var/cache/apt /usr/share/doc /usr/share/man
 
 #install rocksdb
 cd /tmp
-git clone --single-branch -b v4.8 --depth 1 https://github.com/facebook/rocksdb.git
+git clone --single-branch -b v4.6.1 --depth 1 https://github.com/facebook/rocksdb.git
 cd rocksdb
 PORTABLE=1 make shared_lib
 INSTALL_PATH=/usr/local make install-shared

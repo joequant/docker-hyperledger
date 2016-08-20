@@ -19,3 +19,6 @@
 [submodule "git/car-lease-demo"]
 	path = git/car-lease-demo
 	url = https://github.com/joequant/car-lease-demo.git
+[submodule "git/fabric"]
+	path = git/fabric
+	url = https://github.com/joequant/fabric.git

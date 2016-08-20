@@ -13,9 +13,6 @@
 [submodule "git/cp-chaincode-v2"]
 	path = git/cp-chaincode-v2
 	url = https://github.com/joequant/cp-chaincode-v2.git
-[submodule "git/fabric"]
-	path = git/fabric
-	url = https://github.com/joequant/fabric.git
 [submodule "git/hyperledger-fabric-js"]
 	path = git/hyperledger-fabric-js
 	url = https://github.com/joequant/hyperledger-fabric-js.git
